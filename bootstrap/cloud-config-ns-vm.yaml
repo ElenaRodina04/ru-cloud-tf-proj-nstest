@@ -1,0 +1,52 @@
+#cloud-config
+disable_root: true
+timezone: Europe/Moscow
+
+users:
+    - default
+    - name: gena
+      sudo: true
+      gecos: Gennadiy Khramov
+      shell: /bin/bash
+      ssh_authorized_keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCW15Mzse4CjVQoInVuzD4ObF++DWfgC/Slg/BG6xbejU53+nt7ufQuzvZFgcJ3kHjxS8dTKH2KnpnXDYj3UIqpFo9vpsBuKqklKFGt5idfmAWLDY3NOD7RI3e3BcPS4rAhJVdhgJb4Xv2WcZmax21gG/PMBmgkJ81+bDD8MXPvCmLnNBtSuPU4lEVkySXdjdWwAD2Xhl7k0j50xhmdG/qtBaync+97HPBrdv4JyUxDiURNLxYUDdF+j3n1SoP0Nvy+JrqPJ3TeS0EVuP6l29KtTPpebpbvB8Pq72KG/d886tWwmbvHtyBBEsTohyFUxg8C1uEO11h5SxTTf7BbYI9R imported-openssh-key
+      sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    - name: artem
+      sudo: true
+      gecos: Artem GRIGOREV
+      shell: /bin/bash
+      ssh_authorized_keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCZDOfQi7fkm9rIpXLmMJ7gL2YJhWFwVcxdB77rP9LNqcn1FH8dKAqnhAg5mrii16/E9MXZv75u+7xxpQu+YlmwBrYs4TxTvEuvnIb2J5hF7NwyFhpvSSTLqsGSBcYBLhXGUCPD9dQeI0uLsk7l6F4NZeaXCsdZbdo+pzHmLNnDg4LPpEMILhcMAG++lgZeVy9XB1Ditd0GLbfecxRZoJAll2NBSyqJPzR4FDphOlO9OpZllB2H2qSC9/fN1bylNTfb5rMU7abZab9g7+i3kOnEhasH0h7XRIMEFlemmLFOgSn/oHEZoPFYmfs1/TcBmWl15v3Hs8cfAO6kyxOGUgkj9L8jtOKlgyQziM++cDLzpvcBHan8zypvm0sDTpg3w0HUFB90IUZEnuxrFmKsycSLQ8LiqGjr2PP1q649TKsX9lggkT5IircOcepoQnYZSWn0/cay1zIw9PauKNkxpWWanDgc52UXrYVvAf7FZHIsEWAyDqL63UxG5aPHbLBEkEn0jWGFO4W/5ZwBv61w8qEI81X5ryd6qeqmHq8B5TBJLAM1khK2so1PEKw3sIRWSWYDdN8zFmbHFNFsDc5SfGU1YMnw0oSnvZv76DWIQso7ELwhcJCK21ocHGbmjOB9x6teZmwg3HszpGikMFzjJ4ho78Es/Xc86JFBFfpQKy7fNQ== agrigo31@RUL-D98T7H2
+      sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    - name: phil
+      sudo: true
+      gecos: Philip Marin
+      shell: /bin/bash
+      ssh_authorized_keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9wN3Ja4xCgSmkhUsoDzhSEp2vDbGE7fM1Mazx4Ur4NVONxXgDuIYdlI4npVIsbMRCuxDq0lyMzL/n6JnBDZEBSTUin/QxyQvQ0fI8M6MDVTq117Ib8XUsIgdFXPDFr/+MejYPWVmL8KbesVBkcIeVsvV8UtpxHNQ3VFLkteXZIgJvGJq7E6CKN99ds+8WU82wAPqy1v1H4APuZjFBPHEizvZwvud2Lu9Me1bdKw4NHsl80CHGLuNxxa+2kBLVwun0MOMDHrNjEMkaLBWd1tJfqQV28LRcxf85EGqpIb44PaUlW+rzMG31ujqrNgWhWX64/95ppXRxgCKBIkjdJcPH phil@deck
+      sudo: ['ALL=(ALL) NOPASSWD:ALL']
+ 
+ packages: 
+    - apt-transport-https
+    - curl
+    - gnupg-agent
+    - software-properties-common
+    - git
+    - bash-completion
+    - net-tools
+    - iperf
+    - unzip
+    - iptables-persistent
+
+runcmd:
+    - [ sh, -c, "sudo echo net.ipv4.ip_forward = 1 >> /etc/sysctl.conf" ]
+    - [ sh, -c, "sudo sysctl -p /etc/sysctl.conf" ]
+#    - [ sh, -c, "sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE" ]
+#    - [ sh, -c, "sudo iptables-save > /etc/iptables/rules.v4" ]
+
+power_state:
+    delay: "+10"
+    mode: reboot
+    message: first reboot
+    timeout: 120
+    condition: True
