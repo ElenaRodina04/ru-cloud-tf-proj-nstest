@@ -1,2 +1,2 @@
-# ru-cloud-tf-proj-nstest
-Testing environment for NordStream project
+# ru-cloud-tf-proj-netwrok-dev
+Testing environment for Network team

@@ -4,7 +4,7 @@
 terraform {
   backend "s3" {
     bucket                      = "dkttfstate"
-    key                         = "ru-cloud-tf-proj-nstest/terraform.tfstate"
+    key                         = "network/terraform.tfstate"
     region                      = "us-east-1"
     endpoint                    = "storage.yandexcloud.net"
     skip_region_validation      = "true"
