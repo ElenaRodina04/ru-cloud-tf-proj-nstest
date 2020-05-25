@@ -11,7 +11,7 @@ labels = {
   project_owner    = "artem-grigorev"
   project_tag      = "network"
   sacm_costcenter  = "5011611000"
-  git_project_name = "ru-cloud-tf-proj-nstest"
+  git_project_name = "ru-cloud-tf-proj-network-dev"
   saw              = "ce-devops-russia"
 }
 project_owner_email = "artem.grigoriev@decathlon.com"

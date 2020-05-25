@@ -35,9 +35,9 @@ variable "project_owner_email" {
 /***********************************************************************************************************************************
 * Infrastructure deployment values
 ***********************************************************************************************************************************/
-variable "zones" {
-  description = "Yandex Cloud Zones for provisoned resources"
-  default     = ["ru-central1-a", "ru-central1-b", "ru-central1-c"]
+variable "zone" {
+  description = "Yandex Cloud Zone for provisoned resources"
+  default     = "ru-central1-a"
 }
 
 variable "instance" {
